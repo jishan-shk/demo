@@ -19,6 +19,9 @@ Route::get('/', function () {
 });
 
 
- Route::get('dashboard',[DemoController::class,'dashboard'])->name('dashboard');
- Route::post('save-demo',[DemoController::class,'save_demo'])->name('save-demo');
+Route::middleware('LoginMiddleware')->group(function() {
+    Route::get('dashboard', [DemoController::class, 'dashboard'])->name('dashboard');
+});
+
+Route::post('save-demo',[DemoController::class,'save_demo'])->name('save-demo');
 Route::get('connection',[DemoController::class,'check_connection']);
